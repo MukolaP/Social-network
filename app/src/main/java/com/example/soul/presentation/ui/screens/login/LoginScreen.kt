@@ -50,17 +50,24 @@ fun LoginScreen(
                             text = "Made in company(Mukola Pulupiv)",
                             color = colors.primaryTextColor,
                             modifier = Modifier
-                                .background(color = colors.primaryViewBackground)
-                                .padding(10.dp, 10.dp, 10.dp, 10.dp),
+                                .background(
+                                    color = colors.primaryViewBackground,
+                                    shape = MaterialTheme.shapes.small.copy(
+                                        bottomEnd = CornerSize(20), bottomStart = CornerSize(20)
+                                    )
+                                )
+                                .padding(
+                                    10.dp, 10.dp, 10.dp, 10.dp
+                                ),
                             style = TextStyle(
                                 shadow = Shadow(
                                     colors.primaryShadowColor,
                                     Offset(10.0f, 16.5f),
                                     1.0f
                                 )
-                            )
-
+                            ),
                         )
+
                     }
                 },
                 backgroundColor = colors.primaryBackground,
@@ -72,7 +79,7 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = colors.primaryBackground)
+                .background(color = colors.primaryBackground),
         ) {
             Spacer(modifier = Modifier.heightIn(50.dp))
 

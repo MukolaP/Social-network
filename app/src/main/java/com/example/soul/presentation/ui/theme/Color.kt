@@ -7,6 +7,7 @@ data class Colors(
     val primaryButtonColor: Color,
     val primaryHintColor: Color,
     val primaryTextColor: Color,
+    val secondaryTextColor: Color,
     val primaryViewBackground: Color,
     val primaryShadowColor: Color,
     val accentColor: Color,
@@ -17,6 +18,7 @@ val darkPalette = Colors(
     primaryButtonColor = Color(0xFF8e9392),
     primaryHintColor = Color(0xFF8f9b9e),
     primaryTextColor = Color(0xFFcbcecb),
+    secondaryTextColor = Color.DarkGray,
     primaryViewBackground = Color(0xFF161819),
     primaryShadowColor = Color.DarkGray,
     accentColor = Color(0xFFda8006)
@@ -27,6 +29,7 @@ val lightPalette = Colors(
     primaryButtonColor = Color(0xFFda8006),
     primaryHintColor = Color(0xFF8f9b9e),
     primaryTextColor = Color.Black,
+    secondaryTextColor = Color.LightGray,
     primaryViewBackground = Color.Gray,
     primaryShadowColor = Color.LightGray,
     accentColor = Color(0xFF001FFF)

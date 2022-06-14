@@ -16,6 +16,8 @@ import com.example.soul.presentation.ui.screens.profile.ProfileScreen
 import com.example.soul.presentation.ui.screens.profile.ProfileViewModel
 import com.example.soul.presentation.ui.screens.registration.RegistrationScreen
 import com.example.soul.presentation.ui.screens.registration.RegistrationViewModel
+import com.example.soul.presentation.ui.screens.search.SearchScreen
+import com.example.soul.presentation.ui.screens.search.SearchViewModel
 
 @Composable
 fun ApplicationScreen() {
@@ -33,6 +35,10 @@ fun ApplicationScreen() {
         composable(NavigationTree.Main.name) {
             val mainViewModel = hiltViewModel<MainViewModel>()
             MainScreen(viewModel = mainViewModel, navController = navController)
+        }
+        composable(NavigationTree.Search.name) {
+            val searchViewModel = hiltViewModel<SearchViewModel>()
+            SearchScreen(viewModel = searchViewModel, navController = navController)
         }
         composable(NavigationTree.Chats.name) {
             val chatsViewModel = hiltViewModel<ChatsViewModel>()
