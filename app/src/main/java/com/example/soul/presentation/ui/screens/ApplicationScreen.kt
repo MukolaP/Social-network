@@ -1,4 +1,4 @@
-package com.example.soul.presentation.ui
+package com.example.soul.presentation.ui.screens
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel

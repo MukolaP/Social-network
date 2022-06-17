@@ -7,7 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
-import com.example.soul.presentation.ui.ApplicationScreen
+import com.example.soul.presentation.ui.screens.ApplicationScreen
 import com.example.soul.presentation.ui.theme.AppTheme
 import com.example.soul.presentation.ui.theme.SoulTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SoulTheme(darkTheme = false) {
+            SoulTheme(darkTheme = isLight.value) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()

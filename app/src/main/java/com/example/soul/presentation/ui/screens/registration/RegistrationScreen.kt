@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.soul.domain.model.User
 import com.example.soul.navigation.NavigationTree
 import com.example.soul.presentation.ui.theme.AppTheme.colors
 
@@ -31,13 +34,19 @@ fun RegistrationScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Row {
-                        Text(
-                            text = "Registration",
-                            modifier = Modifier
-                                .weight(1F)
-                                .padding(top = 8.dp),
-                            color = colors.primaryTextColor,
+                    Text(text = "Registration", color = colors.primaryTextColor)
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.navigate(NavigationTree.Login.name)
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            modifier = Modifier,
+                            contentDescription = "back",
+                            tint = colors.primaryButtonTextColor
                         )
                     }
                 },
@@ -70,6 +79,9 @@ fun RegistrationScreen(
                     bottomStart = CornerSize(20)
                 ),
                 singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = colors.primaryTextColor
+                )
             )
 
             Spacer(modifier = Modifier.heightIn(50.dp))
@@ -89,7 +101,10 @@ fun RegistrationScreen(
                     bottomEnd = CornerSize(20),
                     bottomStart = CornerSize(20)
                 ),
-                singleLine = true
+                singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = colors.primaryTextColor
+                )
             )
 
             Spacer(modifier = Modifier.heightIn(50.dp))
@@ -109,12 +124,22 @@ fun RegistrationScreen(
                     bottomEnd = CornerSize(20),
                     bottomStart = CornerSize(20)
                 ),
-                singleLine = true
+                singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = colors.primaryTextColor
+                )
             )
 
             Button(
                 onClick = {
-                    navController.navigate(NavigationTree.Main.name)
+                    viewModel.validateAccount(
+                        navController,
+                        User(
+                            nickname = nickname,
+                            password = password,
+                            email = email
+                        )
+                    )
                 }, modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 32.dp, top = 175.dp, end = 32.dp),

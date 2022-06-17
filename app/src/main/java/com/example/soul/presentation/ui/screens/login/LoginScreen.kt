@@ -129,7 +129,7 @@ fun LoginScreen(
                     .padding(start = 32.dp, top = 275.dp, end = 32.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = colors.accentColor,
-                    contentColor = colors.primaryTextColor
+                    contentColor = colors.primaryButtonTextColor
                 )
             ) {
                 Text(text = "Log in")
