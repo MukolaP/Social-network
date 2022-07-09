@@ -46,7 +46,7 @@ fun RegistrationScreen(
                             imageVector = Icons.Filled.ArrowBack,
                             modifier = Modifier,
                             contentDescription = "back",
-                            tint = colors.primaryButtonTextColor
+                            tint = colors.primaryButtonColor
                         )
                     }
                 },
