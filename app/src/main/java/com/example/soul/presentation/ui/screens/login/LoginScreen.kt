@@ -89,7 +89,7 @@ fun LoginScreen(
                     nickname = it
                 },
                 label = {
-                    Text(text = "Nickname ", color = colors.primaryHintColor)
+                    Text(text = "Nickname ", color = colors.primaryHint)
                 },
                 modifier = Modifier
                     .padding(start = 32.dp, end = 32.dp)
@@ -109,7 +109,7 @@ fun LoginScreen(
                     password = it
                 },
                 label = {
-                    Text(text = "Password", color = colors.primaryHintColor)
+                    Text(text = "Password", color = colors.primaryHint)
                 },
                 modifier = Modifier
                     .padding(start = 32.dp, end = 32.dp)

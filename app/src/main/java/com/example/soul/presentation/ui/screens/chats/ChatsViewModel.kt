@@ -3,27 +3,26 @@ package com.example.soul.presentation.ui.screens.chats
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.soul.domain.model.Message
 import com.example.soul.presentation.ui.screens.search.SearchWidgetState
 
 class ChatsViewModel : ViewModel() {
 
-    private val _searchWidgetState: MutableState<SearchWidgetState> =
+    private val _chatWidgetState: MutableState<SearchWidgetState> =
         mutableStateOf(value = SearchWidgetState.CLOSED)
-    val searchWidgetState: State<SearchWidgetState> = _searchWidgetState
+    val chatWidgetState: State<SearchWidgetState> = _chatWidgetState
 
-    private val _searchTextState: MutableState<String> =
+    private val _chatTextState: MutableState<String> =
         mutableStateOf(value = "")
-    val searchTextState: State<String> = _searchTextState
+    val chatTextState: State<String> = _chatTextState
 
     fun updateSearchWidgetState(newValue: SearchWidgetState) {
-        _searchWidgetState.value = newValue
+        _chatWidgetState.value = newValue
     }
 
     fun updateSearchTextState(newValue: String) {
-        _searchTextState.value = newValue
+        _chatTextState.value = newValue
     }
 
+    val chatList: List<String> = listOf("Mukola", "Dima", "Oleksiy", "Stas")
 }

@@ -6,8 +6,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.soul.navigation.NavigationTree
+import com.example.soul.presentation.ui.screens.chat.ChatScreen
+import com.example.soul.presentation.ui.screens.chat.ChatViewModel
 import com.example.soul.presentation.ui.screens.chats.ChatsScreen
 import com.example.soul.presentation.ui.screens.chats.ChatsViewModel
+import com.example.soul.presentation.ui.screens.edit.EditScreen
+import com.example.soul.presentation.ui.screens.edit.EditViewModel
 import com.example.soul.presentation.ui.screens.login.LoginScreen
 import com.example.soul.presentation.ui.screens.login.LoginViewModel
 import com.example.soul.presentation.ui.screens.main.MainScreen
@@ -44,9 +48,17 @@ fun ApplicationScreen() {
             val chatsViewModel = hiltViewModel<ChatsViewModel>()
             ChatsScreen(viewModel = chatsViewModel, navController = navController)
         }
+        composable(NavigationTree.Chat.name) {
+            val chatViewModel = hiltViewModel<ChatViewModel>()
+            ChatScreen(viewModel = chatViewModel, navController = navController)
+        }
         composable(NavigationTree.Profile.name) {
             val profileViewModel = hiltViewModel<ProfileViewModel>()
             ProfileScreen(viewModel = profileViewModel, navController = navController)
+        }
+        composable(NavigationTree.Edit.name) {
+            val editViewModel = hiltViewModel<EditViewModel>()
+            EditScreen(viewModel = editViewModel, navController = navController)
         }
     }
 }

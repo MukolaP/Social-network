@@ -69,7 +69,7 @@ fun RegistrationScreen(
                     nickname = it
                 },
                 label = {
-                    Text(text = "Nickname ", color = colors.primaryHintColor)
+                    Text(text = "Nickname ", color = colors.primaryHint)
                 },
                 modifier = Modifier
                     .padding(start = 24.dp, end = 24.dp)
@@ -92,7 +92,7 @@ fun RegistrationScreen(
                     password = it
                 },
                 label = {
-                    Text(text = "Password", color = colors.primaryHintColor)
+                    Text(text = "Password", color = colors.primaryHint)
                 },
                 modifier = Modifier
                     .padding(start = 24.dp, end = 24.dp)
@@ -115,7 +115,7 @@ fun RegistrationScreen(
                     email = it
                 },
                 label = {
-                    Text(text = "Email", color = colors.primaryHintColor)
+                    Text(text = "Email", color = colors.primaryHint)
                 },
                 modifier = Modifier
                     .padding(start = 24.dp, end = 24.dp)

@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 data class Colors(
     val primaryBackground: Color,
     val primaryButtonColor: Color,
-    val primaryHintColor: Color,
+    val primaryHint: Color,
     val primaryTextColor: Color,
     val primaryButtonTextColor: Color,
     val secondaryTextColor: Color,
@@ -17,7 +17,7 @@ data class Colors(
 val darkPalette = Colors(
     primaryBackground = Color(0xFF2b3031),
     primaryButtonColor = Color(0xFF8e9392),
-    primaryHintColor = Color(0xFF8f9b9e),
+    primaryHint = Color(0xFF8f9b9e),
     primaryTextColor = Color(0xFFcbcecb),
     primaryButtonTextColor = Color(0xFFcbcecb),
     secondaryTextColor = Color.DarkGray,
@@ -29,7 +29,7 @@ val darkPalette = Colors(
 val lightPalette = Colors(
     primaryBackground = Color.LightGray,
     primaryButtonColor = Color(0xFFda8006),
-    primaryHintColor = Color.DarkGray,
+    primaryHint = Color.DarkGray,
     primaryTextColor = Color.Black,
     primaryButtonTextColor = Color(0xFFcbcecb),
     secondaryTextColor = Color.LightGray,

@@ -3,15 +3,15 @@ package com.example.soul.presentation.ui.screens.chats
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,8 +22,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.soul.navigation.NavigationTree
 import com.example.soul.presentation.ui.components.BottomNavigationView
 import com.example.soul.presentation.ui.screens.search.SearchWidgetState
 import com.example.soul.presentation.ui.theme.AppTheme.colors
@@ -34,8 +36,9 @@ fun ChatsScreen(
     navController: NavController,
     viewModel: ChatsViewModel = viewModel()
 ) {
-    val searchWidgetState by viewModel.searchWidgetState
-    val searchTextState by viewModel.searchTextState
+    val searchWidgetState by viewModel.chatWidgetState
+    val searchTextState by viewModel.chatTextState
+    val chatList: List<String> = viewModel.chatList
 
     Scaffold(
         topBar = {
@@ -61,10 +64,56 @@ fun ChatsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = colors.primaryBackground)
-        ) {}
-        BottomNavigationView(navController = navController)
+        ) {
+            LazyColumn(
+                modifier = Modifier.padding(10.dp)
+            ) {
+                item {
+                    chatList.map { item ->
+                        ChatItem(nickname = item, navController = navController)
+                    }
+                }
+            }
+            BottomNavigationView(navController = navController)
+        }
     }
 }
+
+@Composable
+fun ChatItem(nickname: String, navController: NavController) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Image,
+            modifier = Modifier
+                .width(40.dp)
+                .height(40.dp),
+            contentDescription = "back",
+            tint = colors.primaryButtonColor
+        )
+
+        Spacer(modifier = Modifier.padding(16.dp))
+
+        Column {
+            Text(
+                text = nickname,
+                color = colors.primaryTextColor,
+                fontSize = 16.sp,
+                modifier = Modifier.clickable { navController.navigate(NavigationTree.Chat.name) }
+            )
+
+            Text(
+                text = "Був в мережі 4 год тому",
+                color = colors.primaryHint,
+                fontSize = 12.sp
+            )
+        }
+    }
+}
+
 
 @Composable
 fun SearchAppBar(
@@ -141,7 +190,7 @@ fun SearchAppBar(
                     modifier = Modifier
                         .alpha(ContentAlpha.medium),
                     text = "Search your chats...",
-                    color = colors.primaryHintColor,
+                    color = colors.primaryHint,
                 )
             },
             textStyle = TextStyle(fontSize = MaterialTheme.typography.subtitle1.fontSize),

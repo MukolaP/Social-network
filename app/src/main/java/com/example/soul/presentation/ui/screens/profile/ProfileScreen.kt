@@ -153,7 +153,7 @@ fun ProfileScreen(
             }
 
             Button(
-                onClick = { },
+                onClick = { navController.navigate(NavigationTree.Edit.name) },
                 modifier = Modifier
                     .padding(top = 64.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),

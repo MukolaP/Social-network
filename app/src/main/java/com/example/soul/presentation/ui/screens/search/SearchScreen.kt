@@ -138,7 +138,7 @@ fun SearchAppBar(
                     modifier = Modifier
                         .alpha(ContentAlpha.medium),
                     text = "Search here...",
-                    color = colors.primaryHintColor,
+                    color = colors.primaryHint,
                 )
             },
             textStyle = TextStyle(fontSize = MaterialTheme.typography.subtitle1.fontSize),
