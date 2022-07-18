@@ -22,6 +22,8 @@ import com.example.soul.presentation.ui.screens.registration.RegistrationScreen
 import com.example.soul.presentation.ui.screens.registration.RegistrationViewModel
 import com.example.soul.presentation.ui.screens.search.SearchScreen
 import com.example.soul.presentation.ui.screens.search.SearchViewModel
+import com.example.soul.presentation.ui.screens.settings.SettingsScreen
+import com.example.soul.presentation.ui.screens.settings.SettingsViewModel
 
 @Composable
 fun ApplicationScreen() {
@@ -59,6 +61,10 @@ fun ApplicationScreen() {
         composable(NavigationTree.Edit.name) {
             val editViewModel = hiltViewModel<EditViewModel>()
             EditScreen(viewModel = editViewModel, navController = navController)
+        }
+        composable(NavigationTree.Settings.name) {
+            val settingsViewModel = hiltViewModel<SettingsViewModel>()
+            SettingsScreen(viewModel = settingsViewModel, navController = navController)
         }
     }
 }

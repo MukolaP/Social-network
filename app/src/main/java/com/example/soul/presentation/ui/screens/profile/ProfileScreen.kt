@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.soul.app.isLight
@@ -30,146 +31,166 @@ fun ProfileScreen(
     navController: NavController,
     viewModel: ProfileViewModel = viewModel()
 ) {
-    var expanded: Boolean by rememberSaveable { mutableStateOf(false) }
-
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Text(
-                            text = "Your nickname",
-                            modifier = Modifier
-                                .weight(1F)
-                                .padding(top = 10.dp),
-                            color = colors.primaryTextColor,
-                        )
-
-                        Column {
-                            IconButton(
-                                onClick = {
-                                    expanded = true
-                                },
-                                modifier = Modifier.padding(end = 16.dp)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Filled.Menu,
-                                    contentDescription = "Меню",
-                                    tint = colors.primaryButtonColor
-                                )
-                            }
-
-                            DropdownMenu(
-                                expanded = expanded,
-                                onDismissRequest = { expanded = false }
-                            ) {
-                                DropdownMenuItem(onClick = {
-                                    navController.navigate(NavigationTree.Login.name)
-                                    expanded = false
-                                }) {
-                                    Text("Exit")
-                                }
-                                DropdownMenuItem(onClick = {
-                                    expanded = false
-                                }) {
-                                    Text("Settings")
-                                }
-                                DropdownMenuItem(onClick = {
-                                    isLight.value = !isLight.value
-                                    expanded = false
-                                }) {
-                                    Text("Change theme")
-                                }
-                            }
-                        }
-                    }
-                },
-                backgroundColor = colors.primaryBackground,
-                contentColor = colors.primaryBackground,
-                elevation = 12.dp,
-            )
+            ProfileTopBar(navController = navController)
         }
     ) {
-        Column(
+        ProfileBody(navController = navController)
+    }
+}
+
+@Composable
+fun ProfileTopBar(navController: NavController) {
+
+    var expanded: Boolean by rememberSaveable { mutableStateOf(false) }
+
+    TopAppBar(
+        title = {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = "Your nickname",
+                    modifier = Modifier
+                        .weight(1F)
+                        .padding(top = 10.dp),
+                    color = colors.primaryTextColor,
+                )
+
+                Column {
+                    IconButton(
+                        onClick = {
+                            expanded = true
+                        },
+                        modifier = Modifier.padding(end = 16.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Menu,
+                            contentDescription = "Меню",
+                            tint = colors.primaryButtonColor
+                        )
+                    }
+
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        DropdownMenuItem(onClick = {
+                            navController.navigate(NavigationTree.Login.name)
+                            expanded = false
+                        }) {
+                            Text("Exit")
+                        }
+                        DropdownMenuItem(onClick = {
+                            navController.navigate(NavigationTree.Settings.name)
+                            expanded = false
+                        }) {
+                            Text("Settings")
+                        }
+                        DropdownMenuItem(onClick = {
+                            isLight.value = !isLight.value
+                            expanded = false
+                        }) {
+                            Text("Change theme")
+                        }
+                    }
+                }
+            }
+        },
+        backgroundColor = colors.primaryBackground,
+        contentColor = colors.primaryBackground,
+        elevation = 12.dp,
+    )
+}
+
+@Composable
+fun ProfileBody(navController: NavController) {
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colors.primaryBackground),
+    ) {
+
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .background(color = colors.primaryBackground),
+                .fillMaxWidth()
+                .padding(top = 50.dp, start = 32.dp)
+                .height(70.dp),
         ) {
 
-            Row(
+            Icon(
+                Icons.Filled.SupervisorAccount,
+                contentDescription = "Аватарка",
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 50.dp, start = 32.dp)
-                    .height(70.dp),
+                    .fillMaxHeight()
+                    .width(64.dp)
+                    .border(
+                        width = 1.dp,
+                        color = colors.primaryTextColor,
+                        shape = RoundedCornerShape(5.dp)
+                    ),
+                tint = colors.primaryTextColor
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1F),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-
-                Icon(
-                    Icons.Filled.SupervisorAccount,
-                    contentDescription = "Аватарка",
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(64.dp)
-                        .border(
-                            width = 1.dp,
-                            color = colors.primaryTextColor,
-                            shape = RoundedCornerShape(5.dp)
-                        ),
-                    tint = colors.primaryTextColor
-                )
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1F),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "0", color = colors.primaryTextColor)
-                    Text(text = "Posts", color = colors.primaryTextColor)
-                }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1F),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "0", color = colors.primaryTextColor)
-                    Text(text = "Readers", color = colors.primaryTextColor)
-                }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1F),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "0", color = colors.primaryTextColor)
-                    Text(text = "Tracked", color = colors.primaryTextColor)
-                }
-
+                Text(text = "0", color = colors.primaryTextColor)
+                Text(text = "Posts", color = colors.primaryTextColor)
             }
 
-            Button(
-                onClick = { navController.navigate(NavigationTree.Edit.name) },
+            Column(
                 modifier = Modifier
-                    .padding(top = 64.dp, start = 16.dp, end = 16.dp)
-                    .fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = colors.primaryButtonColor,
-                    contentColor = colors.primaryTextColor
-                )
+                    .fillMaxHeight()
+                    .weight(1F),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Edit profile",
-                    color = colors.secondaryTextColor,
-                    modifier = Modifier.background(color = colors.primaryButtonColor)
-                )
+                Text(text = "0", color = colors.primaryTextColor)
+                Text(text = "Readers", color = colors.primaryTextColor)
             }
 
-            BottomNavigationView(navController = navController)
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1F),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(text = "0", color = colors.primaryTextColor)
+                Text(text = "Tracked", color = colors.primaryTextColor)
+            }
+
         }
+
+        Spacer(modifier = Modifier.padding(top = 16.dp))
+
+        Text(
+            text = "Your biography", color = colors.primaryTextColor,
+            modifier = Modifier.padding(start = 24.dp), fontSize = 16.sp
+        )
+
+        Button(
+            onClick = { navController.navigate(NavigationTree.Edit.name) },
+            modifier = Modifier
+                .padding(top = 64.dp, start = 16.dp, end = 16.dp)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colors.primaryButtonColor,
+                contentColor = colors.primaryTextColor
+            )
+        ) {
+            Text(
+                text = "Edit profile",
+                color = colors.secondaryTextColor,
+                modifier = Modifier.background(color = colors.primaryButtonColor)
+            )
+        }
+
+        BottomNavigationView(navController = navController)
     }
 }

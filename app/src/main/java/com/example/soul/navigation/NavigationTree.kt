@@ -1,5 +1,5 @@
 package com.example.soul.navigation
 
 enum class NavigationTree {
-    Registration, Login, Main, Search, Chats, Chat, Profile, Edit
+    Registration, Login, Main, Search, Chats, Chat, Profile, Edit, Settings
 }

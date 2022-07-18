@@ -25,32 +25,13 @@ fun ChatScreen(
     navController: NavController,
     viewModel: ChatViewModel
 ) {
-    val message: List<String> = viewModel.message
-
     Scaffold(
         topBar = {
             ChatTopBar(navController)
         },
         backgroundColor = colors.primaryBackground
     ) {
-        Column {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth(),
-            ) {
-                item {
-                    message.map { message ->
-                        MessageItem(
-                            message = message,
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            ChatDownLayerScreen()
-        }
+        ChatBody(viewModel)
     }
 }
 
@@ -79,7 +60,32 @@ fun ChatTopBar(navController: NavController) {
 }
 
 @Composable
-fun ChatDownLayerScreen() {
+fun ChatBody(viewModel: ChatViewModel) {
+    val message: List<String> = viewModel.message
+
+    Column {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth(),
+        ) {
+            item {
+                message.map { message ->
+                    MessageItem(
+                        message = message,
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        ChatBottomBody()
+    }
+}
+
+
+@Composable
+fun ChatBottomBody() {
     var message: String by rememberSaveable { mutableStateOf("") }
 
     Row(
